@@ -1,0 +1,47 @@
+<html>
+    <head>        
+		<title>Fortune App</title>
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="mockjax.js"></script>
+		<script>
+			$.mockjax({
+			  url: "/restful/api",
+			  // You may need to include the [json2.js](https://raw.github.com/douglascrockford/JSON-js/master/json2.js) library for older browsers
+			  responseText: { "foo": "moznaim" }
+			});
+			
+			$.mockjax({
+			  url: "/restful/api2",
+			  response: function(settings) {
+		
+
+				this.responseText = {"asaf": "totach2"};
+				}
+			});
+			
+			function getData(){
+				$.post("/restful/api2", {"asaf": "totach"}, function(response) {
+				  if ( response.foo ) {
+					$(".content").html( "Your fortune is: " + response.foo );
+				  } else {
+					$(".content").html( "Things do not look good, no fortune was told" );
+				  }
+				});
+			}
+			
+		</script>
+    </head>
+    
+    <body>
+		<div class="container">
+			<div class="nav" ></div>
+			<div class="details">
+				<div class="header">
+					<button onclick="getData()">Get data</button>
+				</div>
+				<div class="content"></div>
+			</div>
+		</div>
+	
+    </body>
+</html>    
