@@ -20,7 +20,7 @@
 			});
 			
 			function getData(){
-				$.post("/restful/api2", {"asaf": "totach"}, function(response) {
+				$.post("/restful/api", {"asaf": "totach"}, function(response) {
 				  if ( response.foo ) {
 					$(".content").html( "Your fortune is: " + response.foo );
 				  } else {
