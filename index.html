@@ -13,8 +13,6 @@
 			$.mockjax({
 			  url: "/restful/api2",
 			  response: function(settings) {
-		
-
 				this.responseText = {"asaf": "totach2"};
 				}
 			});
@@ -23,6 +21,16 @@
 				$.post("/restful/api", {"asaf": "totach"}, function(response) {
 				  if ( response.foo ) {
 					$(".content").html( "Your fortune is: " + response.foo );
+				  } else {
+					$(".content").html( "Things do not look good, no fortune was told" );
+				  }
+				});
+			}
+			
+			function getDataTwo(){
+				$.post("/restful/api2", {"asaf": "totach2"}, function(response) {
+				  if ( response.asaf ) {
+					$(".content").html( "Your fortune is: " + response.asaf );
 				  } else {
 					$(".content").html( "Things do not look good, no fortune was told" );
 				  }
@@ -39,6 +47,10 @@
 				<div class="header">
 					<button onclick="getData()">Get data</button>
 				</div>
+				<div>
+					<button onclick="getDataTwo()">Get data 2</button>
+				</div>
+				
 				<div class="content"></div>
 			</div>
 		</div>
